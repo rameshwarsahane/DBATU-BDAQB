@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Learning Exam Analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f0fff0;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2E8B57, #3CB371);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .header .meta {
+            margin-top: 15px;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+        
+        .section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .section h2 {
+            color: #2E8B57;
+            border-bottom: 3px solid #3CB371;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .section h3 {
+            color: #2c3e50;
+            margin: 15px 0 10px 0;
+            font-size: 1.4em;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        th {
+            background-color: #2E8B57;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #e0f0e0;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9fff9;
+        }
+        
+        tr:hover {
+            background-color: #e8f8e8;
+        }
+        
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            padding-left: 5px;
+        }
+        
+        .checklist {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .checklist li:before {
+            content: "✓ ";
+            color: #27ae60;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .highlight {
+            background-color: #e8f8e8;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        
+        .priority-high {
+            color: #2E8B57;
+            font-weight: 600;
+        }
+        
+        .priority-medium {
+            color: #3CB371;
+            font-weight: 600;
+        }
+        
+        .priority-low {
+            color: #90EE90;
+            font-weight: 600;
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .stat-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            border-left: 5px solid #3CB371;
+        }
+        
+        .stat-title {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .stat-value {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: #2E8B57;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9em;
+            border-top: 1px solid #e0f0e0;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .section {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+            
+            .header {
+                background: #2E8B57 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .stat-box {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Deep Learning Exam Analysis</h1>
+        <div class="subtitle">Topic-Wise Weightage & Repeated Questions Analysis</div>
+        <div class="meta">
+            Based on BTCOE705B Deep Learning Exam Papers (Multiple Years)<br>
+            Analysis Date: January 2024 | Papers Analyzed: 3+
+        </div>
+    </div>
+    
+    <div class="stats-container">
+        <div class="stat-box">
+            <div class="stat-title">Total Marks Analyzed</div>
+            <div class="stat-value">180+</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-title">Core Topics</div>
+            <div class="stat-value">6</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-title">Most Frequent Topic</div>
+            <div class="stat-value">Neural Networks</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-title">Study Hours Recommended</div>
+            <div class="stat-value">35-45</div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Executive Summary</h2>
+        <p>This analysis covers multiple Deep Learning exam papers from various years. The analysis identifies patterns, repeated questions, and topic weightage to help students focus their preparation effectively.</p>
+        
+        <h3>Key Findings:</h3>
+        <ul class="checklist">
+            <li>6 major topics consistently appear across all papers</li>
+            <li>Neural Networks fundamentals appear most frequently</li>
+            <li>CNN Architecture is heavily weighted</li>
+            <li>Bayesian Learning is consistently tested</li>
+            <li>Backpropagation and Optimization are crucial topics</li>
+        </ul>
+    </div>
+    
+    <div class="section">
+        <h2>Topic-Wise Analysis with Weightage</h2>
+        
+        <h3>1. Machine Learning Fundamentals</h3>
+        <p><span class="highlight">Weightage: ~48 marks</span> | <span class="highlight">Frequency: 3/3 papers</span></p>
+        <ul class="checklist">
+            <li>Supervised vs Unsupervised Learning (3 times)</li>
+            <li>Bayesian Learning / Bayes Classifier (3 times)</li>
+            <li>Machine Learning Steps/Process (2 times)</li>
+            <li>Linear Classifiers (1 time)</li>
+            <li>Applications of ML/DL (3 times)</li>
+        </ul>
+        
+        <h3>2. Neural Networks Basics</h3>
+        <p><span class="highlight">Weightage: ~72 marks</span> | <span class="highlight">Frequency: 3/3 papers</span></p>
+        <ul class="checklist">
+            <li>Neuron Structure (Biological/Artificial) (3 times)</li>
+            <li>Feed Forward Neural Networks (3 times)</li>
+            <li>Perceptron Learning Algorithm (2 times)</li>
+            <li>AND/OR/NAND/XOR Implementation (2 times)</li>
+            <li>Backpropagation Learning (3 times)</li>
+            <li>Multilayer Perceptron Architecture (3 times)</li>
+        </ul>
+        
+        <h3>3. Convolutional Neural Networks</h3>
+        <p><span class="highlight">Weightage: ~60 marks</span> | <span class="highlight">Frequency: 3/3 papers</span></p>
+        <ul class="checklist">
+            <li>CNN Architecture & Building Blocks (3 times)</li>
+            <li>CNN Layers and Functions (3 times)</li>
+            <li>Advantages of CNN over MLP (3 times)</li>
+            <li>Skip Connection Networks (1 time)</li>
+        </ul>
+        
+        <h3>4. Optimization & Training</h3>
+        <p><span class="highlight">Weightage: ~48 marks</span> | <span class="highlight">Frequency: 3/3 papers</span></p>
+        <ul class="checklist">
+            <li>Batch Normalization (3 times)</li>
+            <li>Optimization Techniques (2 times)</li>
+            <li>Batch Optimization (1 time)</li>
+            <li>Weight Update at Output Layer (2 times)</li>
+            <li>Vanishing Gradient Problem (2 times)</li>
+            <li>Cross Entropy Loss (2 times)</li>
+        </ul>
+        
+        <h3>5. Advanced Architectures</h3>
+        <p><span class="highlight">Weightage: ~36 marks</span> | <span class="highlight">Frequency: 3/3 papers</span></p>
+        <ul class="checklist">
+            <li>Autoencoders (Undercomplete/Sparse) (3 times)</li>
+            <li>Recurrent Neural Networks (2 times)</li>
+            <li>Generative Adversarial Networks (2 times)</li>
+            <li>Layer-by-Layer Pretraining (1 time)</li>
+            <li>Recent Trends in DL (1 time)</li>
+        </ul>
+        
+        <h3>6. Feature Extraction & Dimensionality</h3>
+        <p><span class="highlight">Weightage: ~24 marks</span> | <span class="highlight">Frequency: 2/3 papers</span></p>
+        <ul class="checklist">
+            <li>Principal Component Analysis (1 time)</li>
+            <li>Feature Extraction Steps (2 times)</li>
+            <li>Segmentation & Preprocessing (2 times)</li>
+        </ul>
+    </div>
+    
+    <div class="section">
+        <h2>Top 15 Most Repeated Questions</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Question Topic</th>
+                        <th>Frequency</th>
+                        <th>Priority</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Supervised vs Unsupervised Learning</td>
+                        <td>3 times</td>
+                        <td class="priority-high">HIGH</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Bayesian Learning / Bayes Classifier</td>
+                        <td>3 times</td>
+                        <td class="priority-high">HIGH</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Backpropagation Learning</td>
+                        <td>3 times</td>
+                        <td class="priority-high">HIGH</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>CNN Architecture & Advantages</td>
+                        <td>3 times</td>
+                        <td class="priority-high">HIGH</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Batch Normalization</td>
+                        <td>3 times</td>
+                        <td class="priority-high">HIGH</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Feed Forward Neural Networks</td>
+                        <td>3 times</td>
+                        <td class="priority-medium">MEDIUM</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Neuron Structure</td>
+                        <td>3 times</td>
+                        <td class="priority-medium">MEDIUM</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Autoencoders</td>
+                        <td>3 times</td>
+                        <td class="priority-medium">MEDIUM</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>ML/DL Applications</td>
+                        <td>3 times</td>
+                        <td class="priority-medium">MEDIUM</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Weight Update at Output Layer</td>
+                        <td>2 times</td>
+                        <td class="priority-medium">MEDIUM</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>Perceptron Learning Algorithm</td>
+                        <td>2 times</td>
+                        <td class="priority-medium">MEDIUM</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Vanishing Gradient Problem</td>
+                        <td>2 times</td>
+                        <td class="priority-medium">MEDIUM</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>RNN Working</td>
+                        <td>2 times</td>
+                        <td class="priority-low">LOW</td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>GANs</td>
+                        <td>2 times</td>
+                        <td class="priority-low">LOW</td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td>Principal Component Analysis</td>
+                        <td>1 time</td>
+                        <td class="priority-low">LOW</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Exam Preparation Strategy</h2>
+        
+        <h3>Priority-Based Study Plan</h3>
+        
+        <h4><span class="priority-high">HIGH PRIORITY</span> (Must know thoroughly):</h4>
+        <ul class="checklist">
+            <li>Supervised vs Unsupervised Learning with examples</li>
+            <li>Backpropagation algorithm steps and mathematics</li>
+            <li>CNN architecture, layers, and advantages over MLP</li>
+            <li>Bayesian Learning and Bayes Theorem applications</li>
+            <li>Batch Normalization importance and implementation</li>
+        </ul>
+        
+        <h4><span class="priority-medium">MEDIUM PRIORITY</span> (Important concepts):</h4>
+        <ul class="checklist">
+            <li>Feed Forward Neural Network architecture</li>
+            <li>Autoencoders types and applications</li>
+            <li>Neuron structure and activation functions</li>
+            <li>Weight update mechanisms</li>
+            <li>Perceptron learning algorithm</li>
+        </ul>
+        
+        <h4><span class="priority-low">LOW PRIORITY</span> (Know basics):</h4>
+        <ul>
+            <li>Detailed mathematics of PCA</li>
+            <li>Specific recent trends in DL</li>
+            <li>Advanced GAN architectures</li>
+            <li>Detailed comparison of optimization algorithms</li>
+        </ul>
+        
+        <h3>Answer Writing Tips for Deep Learning</h3>
+        <ul class="checklist">
+            <li>Start with definitions for fundamental concepts</li>
+            <li>Use diagrams for architectures (CNN, Neural Networks)</li>
+            <li>Include mathematical formulas where relevant (Bayes Theorem, backpropagation)</li>
+            <li>Compare and contrast when asked (e.g., CNN vs MLP)</li>
+            <li>Provide real-world applications for each concept</li>
+            <li>For algorithms, show step-by-step process with example</li>
+        </ul>
+    </div>
+    
+    <div class="section">
+        <h2>3-Week Study Schedule</h2>
+        
+        <h3>Week 1: Fundamentals & Neural Networks</h3>
+        <ul class="checklist">
+            <li>Day 1-2: ML Fundamentals (Supervised/Unsupervised, Bayes)</li>
+            <li>Day 3-4: Neural Network Basics (Neuron, Perceptron, FFNN)</li>
+            <li>Day 5-6: Backpropagation Algorithm with derivation</li>
+            <li>Day 7: Practice problems and derivations</li>
+        </ul>
+        
+        <h3>Week 2: CNN & Optimization</h3>
+        <ul class="checklist">
+            <li>Day 1-2: CNN Architecture, Layers, Building Blocks</li>
+            <li>Day 3: Optimization Techniques and Batch Normalization</li>
+            <li>Day 4: Weight Update Mechanisms</li>
+            <li>Day 5: Vanishing Gradient Problem and Solutions</li>
+            <li>Day 6: Autoencoders and Dimensionality Reduction</li>
+            <li>Day 7: Practice drawing architectures</li>
+        </ul>
+        
+        <h3>Week 3: Advanced Topics & Revision</h3>
+        <ul class="checklist">
+            <li>Day 1-2: RNNs and GANs basics</li>
+            <li>Day 3: Applications of Deep Learning</li>
+            <li>Day 4-5: Full syllabus revision and concept mapping</li>
+            <li>Day 6: Previous year paper solving</li>
+            <li>Day 7: Final review and weak area strengthening</li>
+        </ul>
+    </div>
+    
+    <div class="section">
+        <h2>Essential Study Checklist</h2>
+        
+        <h3>Core Algorithms ✓</h3>
+        <ul class="checklist">
+            <li>Backpropagation algorithm with chain rule</li>
+            <li>Perceptron learning algorithm</li>
+            <li>Bayes Theorem for classification</li>
+            <li>Batch Normalization steps</li>
+        </ul>
+        
+        <h3>Architecture Diagrams ✓</h3>
+        <ul class="checklist">
+            <li>CNN architecture with all layers</li>
+            <li>Feed Forward Neural Network diagram</li>
+            <li>Autoencoder structure</li>
+            <li>RNN basic architecture</li>
+        </ul>
+        
+        <h3>Mathematical Concepts ✓</h3>
+        <ul class="checklist">
+            <li>Cross Entropy Loss formula</li>
+            <li>Weight update equation</li>
+            <li>Activation functions (Sigmoid, ReLU, Tanh)</li>
+            <li>Gradient descent update rule</li>
+        </ul>
+        
+        <h3>Comparisons ✓</h3>
+        <ul class="checklist">
+            <li>CNN vs MLP advantages</li>
+            <li>Supervised vs Unsupervised Learning</li>
+            <li>Batch vs Stochastic Gradient Descent</li>
+            <li>Undercomplete vs Sparse Autoencoders</li>
+        </ul>
+    </div>
+    
+    <div class="section">
+        <h2>Important Diagrams to Practice</h2>
+        
+        <h3>Neural Network Diagrams:</h3>
+        <ul class="checklist">
+            <li><strong>Biological vs Artificial Neuron</strong> - Structure comparison</li>
+            <li><strong>Feed Forward Neural Network</strong> - Layers and connections</li>
+            <li><strong>Multilayer Perceptron</strong> - Architecture with hidden layers</li>
+            <li><strong>Backpropagation Flow</strong> - Forward and backward pass</li>
+        </ul>
+        
+        <h3>CNN Architecture Diagrams:</h3>
+        <ul class="checklist">
+            <li><strong>CNN Layers</strong> - Convolution, Pooling, Fully Connected</li>
+            <li><strong>Skip Connection Network</strong> - Residual connections</li>
+            <li><strong>Autoencoder Structure</strong> - Encoder and decoder</li>
+            <li><strong>GAN Architecture</strong> - Generator and discriminator</li>
+        </ul>
+    </div>
+    
+    <div class="section">
+        <h2>Key Mathematical Formulas</h2>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Formula</th>
+                        <th>Application</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Bayes Theorem: P(A|B) = P(B|A)P(A)/P(B)</td>
+                        <td>Bayesian Learning and Classification</td>
+                    </tr>
+                    <tr>
+                        <td>Cross Entropy: H(p,q) = -∑ p(x) log q(x)</td>
+                        <td>Loss function for classification</td>
+                    </tr>
+                    <tr>
+                        <td>Weight Update: w = w - η∇J(w)</td>
+                        <td>Gradient descent optimization</td>
+                    </tr>
+                    <tr>
+                        <td>Sigmoid: σ(x) = 1/(1 + e⁻ˣ)</td>
+                        <td>Activation function</td>
+                    </tr>
+                    <tr>
+                        <td>ReLU: f(x) = max(0, x)</td>
+                        <td>Activation function in deep networks</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>Deep Learning Exam Analysis | Generated on: January 2024</p>
+        <p>Based on DR. BABASAHEB AMBEDKAR TECHNOLOGICAL UNIVERSITY exam papers (BTCOE705B)</p>
+        <p>For academic use only | Master the mathematics and architectures!</p>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const printBtn = document.createElement('button');
+            printBtn.innerHTML = '🖨️ Print/PDF';
+            printBtn.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: #2E8B57;
+                color: white;
+                border: none;
+                padding: 12px 20px;
+                border-radius: 50px;
+                cursor: pointer;
+                font-weight: bold;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+                z-index: 1000;
+            `;
+            printBtn.onclick = () => window.print();
+            document.body.appendChild(printBtn);
+        });
+    </script>
+</body>
+</html>

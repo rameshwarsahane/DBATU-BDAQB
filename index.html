@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DBATU CSE Final Year Resources</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Slab:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a237e;
+            --primary-light: #534bae;
+            --secondary: #ff5722;
+            --accent: #4caf50;
+            --light: #f5f7ff;
+            --dark: #121212;
+            --gray: #e0e0e0;
+            --shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+            background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MCA1MCI+PHBhdGggZD0iTTI1IDQ4QzEyLjMgNDggMiAzNy43IDIgMjVTMTIuMyAyIDI1IDJzMjMgMTAuMyAyMyAyM1MzNy43IDQ4IDI1IDQ4em0wLTRjMTAuNSAwIDE5LTguNSAxOS0xOVMzNS41IDYgMjUgNiA2IDE0LjUgNiAyNXM4LjUgMTkgMTkgMTl6IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMSkiLz48L3N2Zz4=');
+            opacity: 0.3;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            color: var(--secondary);
+        }
+
+        h1 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .university-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .main-content {
+            padding: 3rem 0;
+        }
+
+        .intro-box {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            border-left: 5px solid var(--secondary);
+        }
+
+        .intro-box h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .intro-box p {
+            color: #555;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .resources-section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 2.5rem;
+            font-size: 1.8rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .subject-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .card-header i {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .card-body p {
+            color: #555;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .buttons-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .resource-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .resource-btn i {
+            font-size: 1.1rem;
+        }
+
+        .btn-topic {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-topic:hover {
+            background-color: var(--primary-light);
+        }
+
+        .btn-paper {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .btn-paper:hover {
+            background-color: #3d8b40;
+        }
+
+        .footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+
+        .footer p {
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+
+        .disclaimer {
+            font-size: 0.9rem;
+            opacity: 0.6;
+            max-width: 800px;
+            margin: 1rem auto 0;
+        }
+
+        @media (max-width: 768px) {
+            .subject-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .university-name {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <i class="fas fa-university logo"></i>
+                <div>
+                    <h1>B.Tech CSE Final Year Resources</h1>
+                    <div class="university-name">Dr. Babasaheb Ambedkar Technical University, Lonere, Raigad</div>
+                </div>
+            </div>
+            <p class="subtitle">Access important topics and most repeated question papers for final year Computer Science Engineering subjects</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="intro-box">
+                <h2><i class="fas fa-graduation-cap"></i> Exam Preparation Resources</h2>
+                <p>This portal provides curated resources for B.Tech CSE final year students at DBATU. Each subject card contains two essential resources: Important Topics (syllabus highlights) and Most Repeated Question Papers (previous years' papers). These resources are specifically tailored to help you prepare effectively for your examinations.</p>
+            </div>
+
+            <div class="resources-section">
+                <h2 class="section-title">Subject-Wise Resources</h2>
+                <div class="subject-grid">
+                    <!-- Artificial Intelligence -->
+                    <div class="subject-card">
+                        <div class="card-header" style="background: linear-gradient(rgb(197, 81, 81));">
+                            <i class="fas fa-brain"></i>
+                            <h3 class="card-title">Artificial Intelligence (AI)</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>AI covers intelligent agents, search algorithms, knowledge representation, reasoning, and machine learning fundamentals. Important topics include neural networks, natural language processing, and expert systems.</p>
+                            <div class="buttons-container">
+                                <a href="./ai/ai.html" target="_parent" class="resource-btn btn-topic">
+                                    <i class="fas fa-list-alt"></i> Important Topics
+                                </a>
+                                <a href="https://drive.google.com/drive/folders/1II-gmVba9BAB5I2yfJWh4X3gpHyedE4g?usp=drive_link" target="_parent" class="resource-btn btn-paper">
+                                    <i class="fas fa-file-pdf"></i> Study Material
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cloud Computing -->
+                    <div class="subject-card">
+                        <div class="card-header" style="background: linear-gradient(135deg, #2196F3 0%, #0D47A1 100%);">
+                            <i class="fas fa-cloud"></i>
+                            <h3 class="card-title">Cloud Computing (CC)</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>Cloud Computing focuses on virtualization, cloud models, service models, deployment models, and security in cloud. Important topics include AWS/Azure services, containerization, and cloud storage solutions.</p>
+                            <div class="buttons-container">
+                                <a href="./cc/cc.html" target="_parent" class="resource-btn btn-topic">
+                                    <i class="fas fa-list-alt"></i> Important Topics
+                                </a>
+                                <a href="https://drive.google.com/drive/folders/1_ziEztaV79rOLPCVQNsUSqIJyUc3Xgx0?usp=drive_link" target="_parent" class="resource-btn btn-paper">
+                                    <i class="fas fa-file-pdf"></i> Study Material
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Big Data Analytics -->
+                    <div class="subject-card">
+                        <div class="card-header" style="background: linear-gradient(135deg, #FF5722 0%, #BF360C 100%);">
+                            <i class="fas fa-database"></i>
+                            <h3 class="card-title">Big Data Analytics (BDA)</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>BDA covers Hadoop ecosystem, MapReduce, NoSQL databases, data visualization, and analytics techniques. Important topics include HDFS, Spark, Hive, and real-time processing frameworks.</p>
+                            <div class="buttons-container">
+                                <a href="./bda/bda.html" target="_parent" class="resource-btn btn-topic">
+                                    <i class="fas fa-list-alt"></i> Important Topics
+                                </a>
+                                <a href="https://drive.google.com/drive/folders/1v3Kb8g_RH43A94byyUqzuKUfCLH-1hZU?usp=drive_link" target="_parent" class="resource-btn btn-paper">
+                                    <i class="fas fa-file-pdf"></i>  Study Material
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Business Intelligence -->
+                    <div class="subject-card">
+                        <div class="card-header" style="background: linear-gradient(135deg, #9C27B0 0%, #6A1B9A 100%);">
+                            <i class="fas fa-chart-line"></i>
+                            <h3 class="card-title">Business Intelligence (BI)</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>Business Intelligence focuses on data warehousing, OLAP, ETL processes, dashboards, and decision support systems. Important topics include data mining techniques, KPI tracking, and reporting tools.</p>
+                            <div class="buttons-container">
+                                <a href="./bi/bi.html" target="_parent" class="resource-btn btn-topic">
+                                    <i class="fas fa-list-alt"></i> Important Topics
+                                </a>
+                                <a href="https://drive.google.com/drive/folders/1Jh9LIRDnW82Tov38q4zAqR1elTw4mhtE?usp=drive_link" target="_parent" class="resource-btn btn-paper">
+                                    <i class="fas fa-file-pdf"></i> Study Material
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Deep Learning -->
+                    <div class="subject-card">
+                        <div class="card-header" style="background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);">
+                            <i class="fas fa-network-wired"></i>
+                            <h3 class="card-title">Deep Learning (DL)</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>Deep Learning covers neural networks, CNNs, RNNs, LSTMs, and generative models. Important topics include backpropagation, optimization algorithms, transfer learning, and TensorFlow/PyTorch implementations.</p>
+                            <div class="buttons-container">
+                                <a href="./dl/dl.html" target="_parent" class="resource-btn btn-topic">
+                                    <i class="fas fa-list-alt"></i> Important Topics
+                                </a>
+                                <a href="https://drive.google.com/drive/folders/1vuhJc7R83OiOAM2PDVlUnDxn4PKHiT1C?usp=drive_link" target="_parent" class="resource-btn btn-paper">
+                                    <i class="fas fa-file-pdf"></i> Study Material
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p><i class="fas fa-university"></i> Dr. Babasaheb Ambedkar Technical University, Lonere, Raigad</p>
+            <p>B.Tech Computer Science & Engineering - Final Year Resources Portal</p>
+            <p class="disclaimer">Disclaimer: This is a demonstration website for educational purposes. The links provided are placeholder links. For actual university resources, please refer to the official university portal or contact your department.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Add interactive functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.resource-btn');
+            
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if (this.getAttribute('href').includes('placeholder')) {
+                        e.preventDefault();
+                        
+                        const subject = this.closest('.subject-card').querySelector('.card-title').textContent;
+                        const resourceType = this.classList.contains('btn-topic') ? 'Important Topics' : 'Most Repeated Papers';
+                        
+                        // Show a modal or alert (simulated here with alert)
+                        alert(`This is a demonstration. In a real implementation, this would open the ${resourceType} for ${subject}.\n\nActual links would point to Google Drive or university portal resources.`);
+                        
+                        // In a real implementation, you would not prevent default and the link would work
+                        // For demonstration, we'll log to console
+                        console.log(`Clicked: ${resourceType} for ${subject}`);
+                    }
+                });
+            });
+            
+            // Add hover effects for subject cards
+            const cards = document.querySelectorAll('.subject-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    const header = this.querySelector('.card-header');
+                    const color = window.getComputedStyle(header).backgroundImage;
+                    this.style.boxShadow = `0 15px 30px ${getShadowColor(color)}`;
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.boxShadow = 'var(--shadow)';
+                });
+            });
+            
+            // Helper function to extract color for shadow
+            function getShadowColor(gradient) {
+                // This is a simplified version - in reality you'd parse the gradient
+                return 'rgba(0, 0, 0, 0.15)';
+            }
+        });
+    </script>
+</body>
+</html>
